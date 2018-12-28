@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "modone:cauldron_fancy"
+  },
+  "pattern": [
+    "i i",
+    "iii",
+    "ppp"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    }
+  }
+}
