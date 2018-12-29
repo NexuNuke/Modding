@@ -1,6 +1,10 @@
 package com.nexunuke.modone.blocks;
 
+import com.nexunuke.modone.network.Messages;
+import com.nexunuke.modone.network.PacketSyncPower;
+import com.nexunuke.modone.tools.IEnergyContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
@@ -10,7 +14,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ContainerFancyCauldron extends Container {
+public class ContainerFancyCauldron extends Container implements IEnergyContainer {
     private TileFancyCauldron te;
 
     private static final int PROGRESS_ID = 0;
@@ -101,6 +105,15 @@ public class ContainerFancyCauldron extends Container {
                 listener.sendWindowProperty(this, 0, te.getProgress());
             }
         }
+        if (te.getEnergy() !=te.getClientEnergy()) {
+            te.setClientEnergy(te.getEnergy());
+            for (IContainerListener listener : listeners) {
+                if (listener instanceof EntityPlayerMP) {
+                    EntityPlayerMP player = (EntityPlayerMP) listener;
+                    Messages.INSTANCE.sendTo(new PacketSyncPower(te.getEnergy()), player);
+                }
+            }
+        }
     }
 
     @Override
@@ -108,5 +121,10 @@ public class ContainerFancyCauldron extends Container {
         if (id == PROGRESS_ID){
             te.setClientProgress(data);
         }
+    }
+
+    @Override
+    public void syncPower(int energy) {
+        te.setClientEnergy(energy);
     }
 }

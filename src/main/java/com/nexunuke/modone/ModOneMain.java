@@ -1,6 +1,7 @@
 package com.nexunuke.modone;
 
 import com.nexunuke.modone.blocks.FancyCauldron;
+import com.nexunuke.modone.network.Messages;
 import com.nexunuke.modone.proxy.CommonProxy;
 import com.nexunuke.modone.util.Reference;
 import com.nexunuke.modone.init.Blocks;
@@ -39,22 +40,22 @@ public class ModOneMain
     };
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
+    public void preInit(FMLPreInitializationEvent e)
     {
-        logger = event.getModLog();
+        proxy.preInit(e);
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event)
+    public void init(FMLInitializationEvent e)
     {
         // some example code
-        logger.info("DIRT BLOCK >> {}");
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        //logger.info("DIRT BLOCK >> {}");
+        proxy.init(e);
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
+    public void postInit(FMLPostInitializationEvent e)
     {
-
+        proxy.postInit(e);
     }
 }

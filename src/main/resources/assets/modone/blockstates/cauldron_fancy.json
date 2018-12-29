@@ -1,5 +1,14 @@
 {
   "variants": {
-    "normal": { "model": "modone:cauldron_fancy" }
+    "normal" : { "model": "modone:cauldron_fancy2" },
+    "level=0": { "model": "modone:cauldron_fancy2" },
+    "level=1": { "model": "modone:cauldron_fancy2" },
+    "level=2": { "model": "modone:cauldron_fancy3" },
+    "level=3": { "model": "modone:cauldron_fancy4" }
+  },
+  "state": {
+    "off": {},
+    "working": { "model": "modone:cauldron_fancy4"},
+    "nopower": { "model": "modone:cauldron_fancy"}
   }
 }

@@ -1,5 +1,12 @@
+#PARSE_ESCAPES
+
 item.x.name=x
 
 tile.cauldron_fancy.name=Fancy Cauldron
 
 itemGroup.modone=Mod One
+
+message.modone.cauldron_fancy=\
+    @aEnergy: %d\n\
+    @aItems: %d -> %d\n\
+    @fFancy Cauldron

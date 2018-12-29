@@ -1,10 +1,9 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "blocks/planks_oak",
+        "particle": "blocks/blocks/planks_oak",
         "0": "blocks/cauldron_inner",
-        "1": "blocks/cauldron_side",
-        "2": "blocks/stone"
+        "1": "blocks/cauldron_side"
     },
     "elements": [
         {
@@ -38,12 +37,12 @@
             "from": [ 2.0, 1.0, 2.0 ], 
             "to": [ 3.0, 11.0, 14.0 ], 
             "faces": {
-                "north": { "texture": "#1", "uv": [ 1.0, 0.0, 2.0, 10.0 ], "cullface": "north" },
+                "north": { "texture": "#1", "uv": [ 1.0, 0.0, 2.0, 10.0 ] },
                 "east": { "texture": "#1", "uv": [ 0.0, 0.0, 12.0, 10.0 ] },
                 "south": { "texture": "#1", "uv": [ 1.0, 0.0, 2.0, 10.0 ] },
                 "west": { "texture": "#1", "uv": [ 2.0, 0.0, 14.0, 10.0 ] },
-                "up": { "texture": "#1", "uv": [ 2.0, 0.0, 7.0, 11.0 ], "rotation": 90 },
-                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 6.0, 14.0 ] }
+                "up": { "texture": "#1", "uv": [ 2.0, 0.0, 14.0, 1.0 ], "rotation": 90 },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 12.0 ] }
             }
         },
         {
@@ -70,48 +69,6 @@
                 "west": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 10.0 ] },
                 "up": { "texture": "#1", "uv": [ 0.0, 0.0, 10.0, 1.0 ] },
                 "down": { "texture": "#1", "uv": [ 0.0, 0.0, 10.0, 1.0 ] }
-            }
-        },
-        {
-            "name": "handle_connection_one",
-            "from": [ 8.0, 9.0, 14.0 ], 
-            "to": [ 17.0, 10.0, 15.0 ], 
-            "rotation": { "origin": [ 8.0, 13.0, 8.0 ], "axis": "z", "angle": -22.5 },
-            "faces": {
-                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] },
-                "east": { "texture": "#2", "uv": [ 0.0, 0.0, -2.0, -2.0 ] },
-                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] },
-                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] },
-                "down": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] }
-            }
-        },
-        {
-            "name": "handle_connection_two",
-            "from": [ 8.0, 9.0, 1.0 ], 
-            "to": [ 17.0, 10.0, 2.0 ], 
-            "rotation": { "origin": [ 8.0, 13.0, 8.0 ], "axis": "z", "angle": -22.5 },
-            "faces": {
-                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] },
-                "east": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] },
-                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] },
-                "down": { "texture": "#2", "uv": [ 0.0, 0.0, 9.0, 1.0 ] }
-            }
-        },
-        {
-            "name": "handle",
-            "from": [ 16.0, 9.0, 2.0 ], 
-            "to": [ 17.0, 10.0, 14.0 ], 
-            "rotation": { "origin": [ 8.0, 13.0, 8.0 ], "axis": "z", "angle": -22.5 },
-            "faces": {
-                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-                "east": { "texture": "#2", "uv": [ 0.0, 0.0, 12.0, 1.0 ] },
-                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 12.0, 1.0 ] },
-                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 12.0 ] },
-                "down": { "texture": "#2", "uv": [ 0.0, 0.0, 1.0, 12.0 ] }
             }
         }
     ]
