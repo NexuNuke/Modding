@@ -33,7 +33,7 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
 
 
     private int progress = 0;
-    private CauldronState state = CauldronState.OFF;
+    public CauldronState state = CauldronState.OFF;
     private int clientProgress = -1;
     private int clientEnergy = -1;
 
@@ -42,12 +42,12 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
         if (!world.isRemote){
             if (energyStorage.getEnergyStored() < GeneralConfig.RF_PER_TICK) {
                 setState(CauldronState.NOPOWER);
+                this.state = CauldronState.NOPOWER;
                 return;
             }
-
-
             if (progress > 0) {
                 setState(CauldronState.WORKING);
+                this.state = CauldronState.WORKING;
                 energyStorage.consumePower(GeneralConfig.RF_PER_TICK);
                 progress--;
                 if (progress <= 0) {
@@ -56,6 +56,7 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
                 markDirty();
             } else {
                 setState(CauldronState.OFF);
+                this.state = CauldronState.OFF;
                 startSmelt();
             }
         }
@@ -127,9 +128,9 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
     public void setState(CauldronState state) {
         if (this.state != state) {
             this.state = state;
-            markDirty();
+            //markDirty();
             IBlockState blockState = world.getBlockState(pos);
-            getWorld().notifyBlockUpdate(pos, blockState, blockState, 3);
+            //getWorld().notifyBlockUpdate(pos, blockState, blockState, 3);
             getWorld().setBlockState(pos, blockState.withProperty(FancyCauldron.STATE, state));
 
         }

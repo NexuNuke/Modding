@@ -1,6 +1,6 @@
 package com.nexunuke.modone.states;
 
-import net.minecraft.util.IStringSerializable;
+        import net.minecraft.util.IStringSerializable;
 
 public enum CauldronState implements IStringSerializable {
 

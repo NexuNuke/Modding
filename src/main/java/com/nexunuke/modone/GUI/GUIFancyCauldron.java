@@ -1,8 +1,10 @@
 package com.nexunuke.modone.GUI;
 
 import com.nexunuke.modone.blocks.ContainerFancyCauldron;
+import com.nexunuke.modone.blocks.FancyCauldron;
 import com.nexunuke.modone.blocks.TileFancyCauldron;
 import com.nexunuke.modone.config.GeneralConfig;
+import com.nexunuke.modone.states.CauldronState;
 import com.nexunuke.modone.util.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
@@ -31,7 +33,7 @@ public class GUIFancyCauldron extends GuiContainer {
         renderHoveredToolTip(mouseX, mouseY);
 
         if (mouseX > guiLeft + 10 && mouseX < guiLeft + 112 && mouseY > guiTop + 5 && mouseY < guiTop + 15) {
-            drawHoveringText(Collections.singletonList("Energy: " + cauldron.getClientEnergy()), mouseX, mouseY, fontRenderer);
+            drawHoveringText(Collections.singletonList("Energy: " + cauldron.getClientEnergy() + " RF"), mouseX, mouseY, fontRenderer);
         }
     }
 
@@ -46,6 +48,13 @@ public class GUIFancyCauldron extends GuiContainer {
         if (cauldron.getClientProgress() > 0) {
             drawString(mc.fontRenderer, "Progress: " + (100 - cauldron.getClientProgress() * 100 / GeneralConfig.MAX_PROGRESS) + "%", guiLeft + 10, guiTop + 50, 0xffffff);
             //drawString(mc.fontRenderer, "Power: ", guiLeft + 10, guiTop + 30, 0xffffff);
+        }
+        if (cauldron.getState() == CauldronState.OFF) {
+            drawString(mc.fontRenderer, "OFF", guiLeft + 10, guiTop + 60, 0xffffff);
+        } else if (cauldron.getState() == CauldronState.WORKING) {
+            drawString(mc.fontRenderer, "WORKING", guiLeft + 10, guiTop + 60, 0xffffff);
+        } else if (cauldron.getState() == CauldronState.NOPOWER) {
+            drawString(mc.fontRenderer, "NOPOWER", guiLeft + 10, guiTop + 60, 0xffffff);
         }
     }
 
