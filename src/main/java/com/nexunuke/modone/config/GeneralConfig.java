@@ -8,5 +8,8 @@ import net.minecraftforge.common.config.Config;
 public class GeneralConfig {
 
 
-
+    public static int MAX_PROGRESS = 40;
+    public static int MAX_POWER = 100000;
+    public static int RF_PER_TICK_INPUT = 128;
+    public static int RF_PER_TICK = 128;
 }

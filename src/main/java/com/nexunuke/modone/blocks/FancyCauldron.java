@@ -51,7 +51,7 @@ public class FancyCauldron extends BlockBase implements ITileEntityProvider {
         setResistance(10.0f);
         setHarvestLevel("pickaxe", 2);
         setLightLevel(0.0f);
-
+        setDefaultState(blockState.getBaseState().withProperty(STATE, CauldronState.OFF));
     }
 
 
@@ -160,9 +160,26 @@ public class FancyCauldron extends BlockBase implements ITileEntityProvider {
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, STATE);
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return this.getDefaultState().withProperty(STATE, CauldronState.OFF);
     }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(STATE, CauldronState.OFF);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(STATE).ordinal();
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, STATE);
+    }
+
+
 
     @Override
     public boolean isOpaqueCube(IBlockState state) {

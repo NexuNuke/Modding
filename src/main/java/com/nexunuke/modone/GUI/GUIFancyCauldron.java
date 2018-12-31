@@ -2,7 +2,7 @@ package com.nexunuke.modone.GUI;
 
 import com.nexunuke.modone.blocks.ContainerFancyCauldron;
 import com.nexunuke.modone.blocks.TileFancyCauldron;
-import com.nexunuke.modone.tools.FancyEnergyStorage;
+import com.nexunuke.modone.config.GeneralConfig;
 import com.nexunuke.modone.util.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
@@ -44,14 +44,14 @@ public class GUIFancyCauldron extends GuiContainer {
         drawEnergyBar(energy);
 
         if (cauldron.getClientProgress() > 0) {
-            drawString(mc.fontRenderer, "Progress: " + (100 - cauldron.getClientProgress() * 100 / TileFancyCauldron.MAX_PROGRESS) + "%", guiLeft + 10, guiTop + 50, 0xffffff);
+            drawString(mc.fontRenderer, "Progress: " + (100 - cauldron.getClientProgress() * 100 / GeneralConfig.MAX_PROGRESS) + "%", guiLeft + 10, guiTop + 50, 0xffffff);
             //drawString(mc.fontRenderer, "Power: ", guiLeft + 10, guiTop + 30, 0xffffff);
         }
     }
 
     private void drawEnergyBar(int energy) {
         drawRect(guiLeft + 10, guiTop + 5, guiLeft + 112, guiTop + 15, 0xff555555);
-        int percentage = energy * 100 / TileFancyCauldron.MAX_POWER;
+        int percentage = energy * 100 / GeneralConfig.MAX_POWER;
         for (int i = 0; i < percentage; i++) {
             drawVerticalLine(guiLeft + 10 + 1 + i, guiTop + 5, guiTop + 14, i % 2 == 0 ? 0xffff0000 : 0xff000000);
         }

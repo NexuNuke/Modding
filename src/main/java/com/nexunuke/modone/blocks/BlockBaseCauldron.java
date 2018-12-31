@@ -6,7 +6,9 @@ import com.nexunuke.modone.init.Items;
 import com.nexunuke.modone.util.IHasModel;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
@@ -30,5 +32,7 @@ public class BlockBaseCauldron extends BlockCauldron implements IHasModel {
     public void registerModels(){
         ModOneMain.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
+
+
 
 }

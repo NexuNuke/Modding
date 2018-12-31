@@ -1,10 +1,11 @@
 package com.nexunuke.modone.blocks;
 
+import com.nexunuke.modone.config.GeneralConfig;
 import com.nexunuke.modone.states.CauldronState;
+import com.nexunuke.modone.blocks.FancyCauldron;
 import com.nexunuke.modone.tools.FancyEnergyStorage;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,6 +14,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -28,11 +31,6 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
     public static final int OUTPUT_SLOTS = 3;
     public static final int SIZE = INPUT_SLOTS + OUTPUT_SLOTS;
 
-    public static final int MAX_PROGRESS = 40;
-    public static final int MAX_POWER = 100000;
-    public static final int RF_PER_TICK_INPUT = 128;
-    public static final int RF_PER_TICK = 128;
-
 
     private int progress = 0;
     private CauldronState state = CauldronState.OFF;
@@ -42,7 +40,7 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
     @Override
     public void update() {
         if (!world.isRemote){
-            if (energyStorage.getEnergyStored() < RF_PER_TICK) {
+            if (energyStorage.getEnergyStored() < GeneralConfig.RF_PER_TICK) {
                 setState(CauldronState.NOPOWER);
                 return;
             }
@@ -50,7 +48,7 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
 
             if (progress > 0) {
                 setState(CauldronState.WORKING);
-                energyStorage.consumePower(RF_PER_TICK);
+                energyStorage.consumePower(GeneralConfig.RF_PER_TICK);
                 progress--;
                 if (progress <= 0) {
                     attemptSmelt();
@@ -72,7 +70,7 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
             ItemStack result = FurnaceRecipes.instance().getSmeltingResult(inputHandler.getStackInSlot(i));
             if (!result.isEmpty()) {
                 if (insertOutput(result.copy(), true)) {
-                    progress = MAX_PROGRESS;
+                    progress = GeneralConfig.MAX_PROGRESS;
                     markDirty();
                 }
             }
@@ -132,7 +130,14 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
             markDirty();
             IBlockState blockState = world.getBlockState(pos);
             getWorld().notifyBlockUpdate(pos, blockState, blockState, 3);
+            getWorld().setBlockState(pos, blockState.withProperty(FancyCauldron.STATE, state));
+
         }
+    }
+
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
+        return false;
     }
 
     public CauldronState getState(){
@@ -212,7 +217,7 @@ public class TileFancyCauldron extends TileEntity implements ITickable {
 
     private CombinedInvWrapper combinedHanlder = new CombinedInvWrapper(inputHandler, outputHandler);
 
-    private FancyEnergyStorage energyStorage = new FancyEnergyStorage(MAX_POWER, RF_PER_TICK_INPUT);
+    private FancyEnergyStorage energyStorage = new FancyEnergyStorage(GeneralConfig.MAX_POWER, GeneralConfig.RF_PER_TICK_INPUT);
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
